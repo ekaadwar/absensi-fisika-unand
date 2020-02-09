@@ -1,0 +1,195 @@
+body{
+	font-family : arial;
+}
+
+#kanvas{
+	width : 1200px;
+	margin : 0 auto;
+}
+
+#judul{
+	background-color : #007400;
+	color : #fff;
+	padding : 10px;
+}
+
+#judul table tr td{
+	
+}
+
+#judul table tr td h3{
+	margin : 0;
+	font-size : 24px;
+}
+
+#judul table tr td h5{
+	margin : 0;
+	margin-top : 10px;
+}
+
+#judul table tr td img{
+	height : 95px;
+	width : 80px;
+	padding-right : 5px;
+}
+
+#menu{
+	margin-bottom : 20px;
+}
+
+#menu ul{
+	padding : 0;
+	margin : 0;
+	list-style: none;
+}
+
+#menu ul li{
+	display : inline-block;
+	position : relative;
+}
+
+#menu ul li a{
+	text-decoration : none;
+	padding : 0 5px;
+	font-size : 16px;
+	color : #007400;
+	line-height : 30px;
+	display : block;
+}
+
+.kanan{
+	float : right;
+}
+
+#menu ul li:hover{
+	background-color : #007400;
+}
+
+#menu ul li:hover a:hover{
+	color : #fff;
+}
+
+.submenu{
+	display : none;
+	position : absolute;
+	width : 105px;
+}
+
+.kanan:hover .submenu{
+	display : block;
+	background-color : #007400;	
+}
+
+.bagian-kiri{
+	width :25%;
+	float : left;
+	border : 4px solid #00C000;
+	box-sizing: border-box;
+	background-color : #F1FFF1;
+}
+
+.bagian-kanan{
+	width : 74%;
+	float : right;
+	padding-bottom : 20px;
+	box-sizing: border-box;
+}
+
+.kiri-atas{
+	border-bottom : 2px solid #00C000;
+	padding: 10px;
+	font-size : 12px;
+}
+
+.kiri-atas h4{
+	font-size : 16px;
+}
+
+.kiri-atas a{
+	text-decoration : none;
+	
+}
+
+.kiri-bawah{
+	padding: 10px;
+}
+
+.kiri-tengah ul{
+	margin : auto;
+}
+
+#isi table.bagian-kiri{
+	border : 0px;
+}
+
+.clear{
+	clear : both;
+}
+
+table.data{
+	border-collapse: collapse;
+	border : 4px solid #00C000;
+	width : 100%;
+}
+
+table.data tr th{
+	padding : 5px;
+	border : 2px solid #00C000;
+	border-bottom : 4px solid #00C000;
+}
+
+table.data tr td{
+	margin : 0;
+	border : 2px solid #00C000;
+	font-size : 14px;
+}
+
+table.data-kecil{
+	border-collapse: collapse;
+	border : 4px solid #00C000;
+	width : 35%;
+	margin : auto;
+}
+
+table.data-kecil tr th{
+	padding : 5px;
+	border : 2px solid #00C000;
+	border-bottom : 4px solid #00C000;
+}
+
+table.data-kecil tr td{
+	margin : 0;
+	border : 2px solid #00C000;
+	font-size : 14px;
+}
+
+#matkul table{
+	border : 0px;
+}
+
+.opsi{
+	text-align : center;
+}
+
+button.tombol {
+	padding : 0;
+	border-radius : 3px;
+	margin: 0 15px;
+}
+
+button.tombol a{
+	color: #007400;
+	text-decoration: none;
+	display : block;
+	line-height : 20px;
+	margin: 5px;
+}
+
+#footer{
+	margin-top :20px;
+	background-color : #007400;
+	line-height : 40px;
+	text-align : center;
+	color : #fff;
+	font-size : 14px;
+}

@@ -1,0 +1,56 @@
+body{
+	background-color : #B3B3B3;
+}
+
+#canvas{
+	width : 450px;
+	margin : 0 auto;
+	margin-top : 150px;
+}
+
+#judul{
+	font-size : 14px;
+	font-family : arial;
+	text-align : center;
+	background-color : #007400;
+	padding : 5px;
+	color : #ffffff;
+	border-bottom : 5px solid #00FF00;
+	border-top-right-radius : 10px;
+	border-top-left-radius : 10px
+}
+
+#badan{
+	background-color : #D1FFD1;
+	border-bottom-right-radius : 10px;
+	border-bottom-left-radius : 10px;
+
+}
+
+#badan form table{
+	margin : 0 auto;
+	padding: 20px;
+}
+
+input{
+	padding:  10px;
+	border-radius : 5px;
+	border : 1px solid #007400;
+}
+
+.in{
+	width : 200px;
+	margin-bottom : 5px; 
+}
+
+.btn{
+	border-radius : 5px;
+	background-color : #007400;
+	color : #ffffff;
+}
+
+.btn:hover{
+	background-color : #00c000;
+	cursor : pointer;
+}
+
