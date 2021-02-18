@@ -4,22 +4,9 @@
 	$password = "";
 	$dbname = "db_absensi";
 
-	$dsn = "mysql:host=" . $servername . ";dbname=" . $dbname;
+	$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-	$option = [
-		PDO::ATTR_PERSISTENT => true,
-		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-	];
-
-	try {
-		$dbh = new PDO($dsn, $username, $password, $option);
-	} catch (PDOException $e) {
-		die($e->getMessage());
+	if(!$conn){
+		die("Connection failed : " . mysqli_connect_error());
 	}
-	
-
-	
-
-	
-	
  ?>

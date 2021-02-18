@@ -44,9 +44,13 @@
 					if($username=='' || $password==''){
 						?> <script type="text/javascript">alert("Username dan Password tidak boleh kosong");</script> <?php
 					}else{
-						$sql = mysql_query("select * from tb_identitas where no_induk = '$username' and password = '$password'") or die (mysql_error());
-						$data = mysql_fetch_array($sql);
-						$cek = mysql_num_rows($sql);
+						$sql = "select * from tb_identitas where no_induk = '$username' and password = '$password'";
+						$result = mysqli_query($conn, $sql);
+						
+
+
+						$data = mysqli_fetch_assoc($result);
+						$cek = mysqli_num_rows($result);
 						if($cek>=1){
 							if($data['jabatan']=='admin'){
 								@$_SESSION['admin'] = $data['no'];
