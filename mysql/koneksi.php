@@ -1,12 +1,21 @@
 <?php 
-	$host = "localhost";
+	$servername = "localhost";
 	$username = "root";
 	$password = "";
-	$db = "db_absensi";
+	$dbname = "db_absensi";
 
-	
-	mysql_connect($host,$username,$password) or die (mysql_error());
-	mysql_select_db($db);
+	$dsn = "mysql:host=" . $servername . ";dbname=" . $dbname;
+
+	$option = [
+		PDO::ATTR_PERSISTENT => true,
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+	];
+
+	try {
+		$dbh = new PDO($dsn, $username, $password, $option);
+	} catch (PDOException $e) {
+		die($e->getMessage());
+	}
 	
 
 	
