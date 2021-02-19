@@ -1,10 +1,10 @@
 <div class="bagian-kiri">
 	<div class="kiri-atas" style="font-size:12px;">
 		<?php 
-			$sql_wkt = mysql_query("SELECT * FROM waktu_update");
-			//$sql_wkt = mysql_query("SELECT * FROM waktu_update") or die (mysql_error());
+			$sql_wkt = mysqli_query($conn, "SELECT * FROM waktu_update");
+			//$sql_wkt = mysqli_query("SELECT * FROM waktu_update") or die (mysql_error());
 
-			$data_wkt = mysql_fetch_array($sql_wkt);
+			$data_wkt = mysqli_fetch_array($sql_wkt);
 			//$data = mysql_fetch_array($sql))
 		 ?>
 		<table>
@@ -102,9 +102,9 @@
 		
 		<?php
 			if(@$_SESSION['admin']){
-				$sql = mysql_query("select * from tb_identitas where jabatan = 'operator' or jabatan = 'pengajar' or jabatan = 'mahasiswa' ") or die (mysql_error());
+				$sql = mysqli_query("select * from tb_identitas where jabatan = 'operator' or jabatan = 'pengajar' or jabatan = 'mahasiswa' ") or die (mysql_error());
 			}else if(@$_SESSION['operator']){
-				$sql = mysql_query("select * from tb_identitas where jabatan ='pengajar' or jabatan='mahasiswa'") or die (mysql_error());
+				$sql = mysqli_query("select * from tb_identitas where jabatan ='pengajar' or jabatan='mahasiswa'") or die (mysql_error());
 			}
 			while($data = mysql_fetch_array($sql)){
 				?>
