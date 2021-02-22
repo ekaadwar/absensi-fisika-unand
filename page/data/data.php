@@ -102,11 +102,11 @@
 		
 		<?php
 			if(@$_SESSION['admin']){
-				$sql = mysqli_query("select * from tb_identitas where jabatan = 'operator' or jabatan = 'pengajar' or jabatan = 'mahasiswa' ") or die (mysql_error());
+				$sql = mysqli_query($conn, "select * from tb_identitas where jabatan = 'operator' or jabatan = 'dosen' or jabatan = 'mahasiswa' ") or die (mysql_error());
 			}else if(@$_SESSION['operator']){
-				$sql = mysqli_query("select * from tb_identitas where jabatan ='pengajar' or jabatan='mahasiswa'") or die (mysql_error());
+				$sql = mysqli_query($conn, "select * from tb_identitas where jabatan ='pengajar' or jabatan='mahasiswa'") or die (mysql_error());
 			}
-			while($data = mysql_fetch_array($sql)){
+			while($data = mysqli_fetch_array($sql)){
 				?>
 				<tr>
 					<td><?php echo $data['no']; ?></td>

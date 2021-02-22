@@ -27,7 +27,7 @@
 									<option value=''>Jabatan</option>
 									<option value='admin'>Admin</option>
 									<option value='operator'>Operator</option>
-									<option value='pengajar'>Dosen</option>
+									<option value='dosen'>Dosen</option>
 									<option value='mahasiswa'>Mahasiswa</option>
 								</select>
 							</li>
@@ -54,31 +54,31 @@
 								<?php
 							}else{
 								//kirim data ke tabel tb_identitas
-								$sql_matkul = mysql_query("SELECT * FROM tb_matkul") or die (mysql_error());
-								$data_matkul = mysql_fetch_array($sql_matkul);
+								$sql_matkul = mysqli_query($conn, "SELECT * FROM tb_matkul") or die (mysql_error());
+								$data_matkul = mysqli_fetch_array($sql_matkul);
 								$jml_pertemuan = $data_matkul['jml_pertemuan'];
 								
 
-								mysql_query("INSERT INTO `tb_identitas` (`no`, `kode`, `nama`, `no_induk`, `gender`, `jabatan`, `password`) VALUES (NULL, '$kode', '$nama', '$no_induk', '$gender', '$jabatan', '$password');") or die (mysql_error());	
+								mysqli_query($conn, "INSERT INTO `tb_identitas` (`no`, `kode`, `nama`, `no_induk`, `gender`, `jabatan`, `password`) VALUES (NULL, '$kode', '$nama', '$no_induk', '$gender', '$jabatan', '$password');") or die (mysql_error());	
 								
 								//---
 								
 								if($jabatan == 'mahasiswa'){
 									/*mengambil nilai nomor indeks dari tabel tb_identitas untuk
 									digunakan sebagai nomor indeks pada tabel tb_rekap*/
-									$sql = mysql_query("SELECT * FROM tb_identitas where kode='$kode'");
-									$data = mysql_fetch_array($sql);
+									$sql = mysqli_query($conn, "SELECT * FROM tb_identitas where kode='$kode'");
+									$data = mysqli_fetch_array($sql);
 									$indek = $data['no'];
 									/*---*/
 									
 									/*Kirim data baru ke tabel tb_rekap*/
-									mysql_query("INSERT INTO `tb_rekap` (`no`, `kode`, `nama`, `no_induk`, `jml_hadir`, `izin`, `sakit`, `tdk_hadir`,`persentase`, `keterangan`) VALUES('$indek','$kode', '$nama', '$no_induk','0','0','0','$jml_pertemuan','0','Tidak Dapat Mengikuti Ujian');") or die (mysql_error());
+									mysqli_query($conn, "INSERT INTO `tb_rekap` (`no`, `kode`, `nama`, `no_induk`, `jml_hadir`, `izin`, `sakit`, `tdk_hadir`,`persentase`, `keterangan`) VALUES('$indek','$kode', '$nama', '$no_induk','0','0','0','$jml_pertemuan','0','Tidak Dapat Mengikuti Ujian');") or die (mysql_error());
 									/*---*/
 									}	
 								?>
 								<script type="text/javascript">
 									alert("Data berhasil ditambah.");
-									window.location.href = "?page=data";
+									// window.location.href = "?page=data";
 								</script>
 								<?php
 							}
