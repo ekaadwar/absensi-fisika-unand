@@ -2,12 +2,12 @@
 	$no_indeks = $_GET['no_indeks'];
 	
 	//memilih data pada tabel tb_identidas
-	$sql = mysql_query("select * from tb_identitas where no = '$no_indeks'") or die (mysql_error(""));
-	$data = mysql_fetch_array($sql);
+	$sql = mysqli_query($conn, "select * from tb_identitas where no = '$no_indeks'");
+	$data = mysqli_fetch_array($sql);
 
 	//memilih data pada table tb_matkul
-	$sql_matkul = mysql_query("SELECT * FROM tb_matkul") or die (mysql_error());
-	$data_matkul = mysql_fetch_array($sql_matkul);
+	$sql_matkul = mysqli_query($conn, "SELECT * FROM tb_matkul");
+	$data_matkul = mysqli_fetch_array($sql_matkul);
 
 	//data user yang akan di edit
 	$kode = $data['kode'];
@@ -76,17 +76,17 @@
 								<?php
 							}else{
 								/*-ubah data pada tabel tb_identitas dengan data yang baru-*/
-								mysql_query("UPDATE tb_identitas set kode='$kode', nama='$nama', no_induk='$no_induk', gender='$gender', jabatan='$jabatan', password='$password' where no='$no_indeks'" ) or die (mysql_error());	
+								mysqli_query($conn, "UPDATE tb_identitas set kode='$kode', nama='$nama', no_induk='$no_induk', gender='$gender', jabatan='$jabatan', password='$password' where no='$no_indeks'" );	
 								
 								//pengeditan pada tabel tb_rekap
 								if($jabatan_lama == 'mahasiswa'){
-									mysql_query("update tb_rekap set kode='$kode',nama='$nama', no_induk='$no_induk' where no='$no_indeks'") or die (mysql_error());
+									mysqli_query($conn, "update tb_rekap set kode='$kode',nama='$nama', no_induk='$no_induk' where no='$no_indeks'");
 									if($jabatan!='mahasiswa'){
-										mysql_query("delete from tb_rekap where no = '$no_indeks'");
+										mysqli_query($conn, "delete from tb_rekap where no = '$no_indeks'");
 									}
 								}else{
 									if($jabatan == 'mahasiswa'){
-										mysql_query("INSERT INTO `tb_rekap` (`no`, `kode`, `nama`, `no_induk`, `jml_hadir`, `izin`, `sakit`, `tdk_hadir`, `persentase`, `keterangan`) VALUES('$no_indeks','$kode', '$nama', '$no_induk','0', '0', '0', '$jml_pertemuan','0','Tidak Dapat Mengikuti Ujian');") or die (mysql_error());
+										mysqli_query($conn, "INSERT INTO `tb_rekap` (`no`, `kode`, `nama`, `no_induk`, `jml_hadir`, `izin`, `sakit`, `tdk_hadir`, `persentase`, `keterangan`) VALUES('$no_indeks','$kode', '$nama', '$no_induk','0', '0', '0', '$jml_pertemuan','0','Tidak Dapat Mengikuti Ujian');");
 									}
 								}
 								?>
