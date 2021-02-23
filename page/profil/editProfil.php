@@ -84,16 +84,16 @@
 			<?php
 		}else{
 			/*-ubah data pada tabel tb_identitas dengan data yang baru-*/
-			mysql_query("update tb_identitas set kode='$kodekartu', nama='$nama', no_induk='$nobp', gender='$gender', password='$password' where no='$no_indeks'" ) or die (mysql_error());
+			mysqli_query($conn, "UPDATE tb_identitas SET kode='$kodekartu', nama='$nama', no_induk='$nobp', gender='$gender', password='$password' WHERE no='$no_indeks'" );
 					
 			if(@$_SESSION['mahasiswa']){
 				/*ubah data pada tabel tb_rekap dengan data yang beru*/
-				mysql_query("update tb_rekap set kode='$kodekartu',nama='$nama', no_induk='$nobp' where no='$no_indeks'") or die (mysql_error());
+				mysqli_query($conn, "UPDATE tb_rekap SET kode='$kodekartu',nama='$nama', no_induk='$nobp' WHERE no='$no_indeks'");
 			}
 			?>
 			<script type="text/javascript">
 				alert("Data berhasil diganti.");
-				window.location.href = "?page=profil";
+				// window.location.href = "?page=profil";
 			</script>
 			<?php
 		}
