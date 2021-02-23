@@ -18,9 +18,9 @@
 	$rfidNum = $rfidNum1."-".$rfidNum2."-".$rfidNum3."-".$rfidNum4;
 
 	//kirim kode ke tabel tb_identitas pada database db_absen
-	$sql = mysql_query("select * from tb_identitas where kode = '$rfidNum'") or die (mysql_error());
-	$data = mysql_fetch_array($sql);
-	$cek = mysql_num_rows($sql);
+	$sql = mysqli_query($conn, "select * from tb_identitas where kode = '$rfidNum'");
+	$data = mysqli_fetch_assoc($sql);
+	$cek = mysqli_num_rows($sql);
 
 	if($cek >= 1){
 		$indek = $data['no'];
@@ -33,14 +33,14 @@
 		if($jabatan == 'pengajar'){
 			/*baca tabel tb_harian satu per satu sesuai nomor indek*/
 			for($i=0;$i<=100;$i++){
-				$sql1 = mysql_query("select * from tb_harian where indek='$i';");
-					while($data1 = mysql_fetch_array($sql1)){
+				$sql1 = mysqli_query($conn, "select * from tb_harian where indek='$i';");
+					while($data1 = mysqli_fetch_assoc($sql1)){
 					$indek = $data1['indek'];
 					$keterangan = $data1['keterangan'];
 						
 					//baca tabel tb_rekap untuk meng-update data jumlah hadir mahasiswa;
-					$sql2 = mysql_query("select * from tb_rekap where no='$i';");
-					$data2 = mysql_fetch_array($sql2);
+					$sql2 = mysqli_query($conn, "select * from tb_rekap where no='$i';");
+					$data2 = mysqli_fetch_assoc($sql2);
 					$jml_hadir = $data2['jml_hadir'];
 									
 					if($keterangan=='on_time'){
@@ -48,8 +48,8 @@
 					}
 									
 					//baca tabel tb_matkul untuk mencari nilai persentase
-					$sql3 = mysql_query("select * from tb_matkul;");
-					$data3 = mysql_fetch_array($sql3);
+					$sql3 = mysqli_query($conn, "select * from tb_matkul;");
+					$data3 = mysqli_fetch_assoc($sql3);
 					$jml_pertemuan = $data3['jml_pertemuan'];
 					$persentase = ($jml_hadir/$jml_pertemuan)*100;
 					
@@ -61,10 +61,10 @@
 					}
 					
 					//update nilai tabel tb_rekap dengan data yang mutakhir
-					mysql_query("UPDATE tb_rekap SET `jml_hadir`='$jml_hadir', `persentase`='$persentase', `keterangan`='$keterangan2' where `no`='$i';");
+					mysqli_query($conn, "UPDATE tb_rekap SET `jml_hadir`='$jml_hadir', `persentase`='$persentase', `keterangan`='$keterangan2' where `no`='$i';");
 				}
 			}
-			mysql_query("TRUNCATE TABLE `tb_harian` ");
+			mysqli_query($conn, "TRUNCATE TABLE `tb_harian` ");
 			?>
 			<script type="text/javascript">
 				alert("Data telah di rekap.");
@@ -79,8 +79,8 @@
 			$waktu_str = "$jam_i:$menit WIB";
 					
 			//ambil data jam masuk kuliah pada table tb_matkul untuk mendapatkan keterangan absensi
-			$sql_matkul = mysql_query("SELECT * FROM tb_matkul");
-			$data_matkul = mysql_fetch_array($sql_matkul);
+			$sql_matkul = mysqli_query($conn, "SELECT * FROM tb_matkul");
+			$data_matkul = mysqli_fetch_assoc($sql_matkul);
 			$jam_masuk = $data_matkul['jam'];
 			$menit_masuk = $data_matkul['menit'];
 			$mnt_toleran = $data_matkul['menit_toleransi'];
@@ -93,7 +93,7 @@
 			}
 										
 			//update table tb_harian dengan data yang baru
-			mysql_query("INSERT INTO `tb_harian` (indek, kode, nama, no_induk, gender, waktu_str, keterangan) VALUES('$indek','$kode','$nama','$no_induk','$gender', '$waktu_str', '$keterangan');") or die(mysql_error());
+			mysqli_query($conn, "INSERT INTO `tb_harian` (indek, kode, nama, no_induk, gender, waktu_str, keterangan) VALUES('$indek','$kode','$nama','$no_induk','$gender', '$waktu_str', '$keterangan');");
 					?>
 			<?php
 		}

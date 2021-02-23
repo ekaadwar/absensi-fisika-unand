@@ -1,12 +1,12 @@
 <?php 
-	$sql = mysql_query("select * from tb_matkul") or die (mysql_error());
-	$data = mysql_fetch_array($sql);
+	$sql = mysqli_query($conn, "SELECT * FROM tb_matkul");
+	$data = mysqli_fetch_assoc($sql);
 
-	$sql2 = mysql_query("SELECT * FROM tb_rekap where no = '$user_terlogin'") or die (mysql_error());
-	$data2 = mysql_fetch_array($sql2);
-	$jml_hadir = $data2['jml_hadir'];
-	$persentase = $data2['persentase'];
-	$keterangan = $data2['keterangan'];
+	$sql2 = mysqli_query($conn, "SELECT * FROM tb_rekap where no = '$user_terlogin'");
+	$data2 = mysqli_fetch_assoc($sql2);
+	$jml_hadir = @$data2['jml_hadir'];
+	$persentase = @$data2['persentase'];
+	$keterangan = @$data2['keterangan'];
 ?>
 <div id="matkul">
 	<!-- Tabel untuk menampilkan data matakuliah -->
@@ -94,8 +94,8 @@
 				</tr>
 				<?php
 					/*ambil data pada tb_rekap*/
-					$sql2 = mysql_query("select * from tb_rekap");
-					while($data2 = mysql_fetch_array($sql2)){
+					$sql2 = mysqli_query($conn, "SELECT * FROM tb_rekap");
+					while($data2 = mysqli_fetch_assoc($sql2)){
 						?>
 						<tr>
 							<td><?php echo $data2['no']; ?></td>

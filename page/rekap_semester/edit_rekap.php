@@ -1,6 +1,6 @@
  <?php 
-	$sql = mysql_query("select * from tb_matkul") or die (mysql_error());
-	$data = mysql_fetch_array($sql);
+	$sql = mysqli_query($conn, "select * from tb_matkul");
+	$data = mysqli_fetch_assoc($sql);
 ?>
 <form method="post" action="">
 	<div id="matkul">
@@ -116,13 +116,13 @@
 			</script>
 			<?php
 		}else{
-			mysql_query("update tb_matkul set nama='$nama', jurusan='$jurusan', fakultas='$fakultas', jml_pertemuan='$jml_pertemuan', 
-				jam='$jam', menit='$menit', menit_toleransi='$menit_toleransi'" ) or die (mysql_error());
+			mysqli_query($conn, "update tb_matkul set nama='$nama', jurusan='$jurusan', fakultas='$fakultas', jml_pertemuan='$jml_pertemuan', 
+				jam='$jam', menit='$menit', menit_toleransi='$menit_toleransi'" );
 				
 			//update nilai ketidakhadiran dan persentase kehadiran pada tabel tb_rekap
 			for($i=1; $i<=100; $i++){
-				$sql2 = mysql_query("SELECT * FROM tb_rekap where no='$i';");
-				while($data2 = mysql_fetch_array($sql2)){
+				$sql2 = mysqli_query($conn, "SELECT * FROM tb_rekap where no='$i';");
+				while($data2 = mysqli_fetch_assoc($sql2)){
 					$jml_hadir = $data2['jml_hadir'];
 					$izin = $data2['izin'];
 					$sakit = $data2['sakit'];
@@ -135,7 +135,7 @@
 						$keterangan2 = "Tidak Dapat Mengikuti Ujian";
 					}
 
-					mysql_query("UPDATE tb_rekap set tdk_hadir='$tdk_hadir', persentase='$persentase', keterangan='$keterangan2' where no='$i';");
+					mysqli_query($conn, "UPDATE tb_rekap set tdk_hadir='$tdk_hadir', persentase='$persentase', keterangan='$keterangan2' where no='$i';");
 				}
 			}
 			?>

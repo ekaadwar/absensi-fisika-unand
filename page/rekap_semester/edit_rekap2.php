@@ -2,8 +2,8 @@
 	$no_indek = $_GET['no_indek'];
 	
 	#baca isi tabel tb_rekap
-	$sql1 = mysql_query("SELECT * FROM tb_rekap where no='$no_indek';");
-	$data1 = mysql_fetch_array($sql1);
+	$sql1 = mysqli_query($conn, "SELECT * FROM tb_rekap where no='$no_indek';");
+	$data1 = mysqli_fetch_assoc($sql1);
 	$sakit = $data1["sakit"];
 	$izin = $data1["izin"];
 	
@@ -60,8 +60,8 @@
 			<?php
 		}else{
 			#baca tabel tb_matkul
-			$sql_mk = mysql_query("SELECT * from tb_matkul");
-			$data_mk = mysql_fetch_array($sql_mk);
+			$sql_mk = mysqli_query($conn, "SELECT * from tb_matkul");
+			$data_mk = mysqli_fetch_assoc($sql_mk);
 			$jml_temu = $data_mk['jml_pertemuan'];
 
 			//hitung persentasse hadir
@@ -76,7 +76,7 @@
 			}
 
 			//update tabel tb_rekap dengan data yang baru
-			mysql_query("update tb_rekap set jml_hadir='$jml_hadir', tdk_hadir='$tdk_hadir', persentase='$persentase', keterangan='$keterangan' where no='$no_indek'");
+			mysqli_query($conn, "update tb_rekap set jml_hadir='$jml_hadir', tdk_hadir='$tdk_hadir', persentase='$persentase', keterangan='$keterangan' where no='$no_indek'");
 			?>
 			<script type="text/javascript">
 				alert("Data Berhasil Diganti.");

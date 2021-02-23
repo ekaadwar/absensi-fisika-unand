@@ -14,8 +14,8 @@
 			<th>Opsi</th>
 		</tr>
 		<?php 
-			$sql = mysql_query("SELECT * FROM tb_harian") or die(mysql_error());
-			while($data = mysql_fetch_array($sql)){
+			$sql = mysqli_query($conn, "SELECT * FROM tb_harian");
+			while($data = mysqli_fetch_array($sql)){
 				?>
 				<tr>
 					<td><?php echo $data['indek']; ?></td>
