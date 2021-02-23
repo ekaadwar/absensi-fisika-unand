@@ -49,7 +49,7 @@
 									<option value=''>Jabatan</option>
 									<option value='admin'>Admin</option>
 									<option value='operator'>Operator</option>
-									<option value='pengajar'>Dosen</option>
+									<option value='dosen'>Dosen</option>
 									<option value='mahasiswa'>Mahasiswa</option>
 								</select>
 							</li>
