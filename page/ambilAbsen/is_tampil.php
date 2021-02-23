@@ -18,14 +18,14 @@
 			$bp = @$_GET["no_induk"];
 
 			if($action2==""){
-				$sql_is = mysql_query("SELECT * FROM tb_izin_sakit ORDER BY indek DESC;");	
+				$sql_is = mysqli_query($conn, "SELECT * FROM tb_izin_sakit ORDER BY indek DESC;");	
 			}else if($action2=="sakit"){
-				$sql_is = mysql_query("SELECT * FROM tb_izin_sakit WHERE kategori='sakit' AND no_bp='$bp' ORDER BY indek DESC");
+				$sql_is = mysqli_query($conn, "SELECT * FROM tb_izin_sakit WHERE kategori='sakit' AND no_bp='$bp' ORDER BY indek DESC");
 			}else if($action2=="izin"){
-				$sql_is = mysql_query("SELECT * FROM tb_izin_sakit WHERE kategori='izin' AND no_bp='$bp' ORDER BY indek DESC");
+				$sql_is = mysqli_query($conn, "SELECT * FROM tb_izin_sakit WHERE kategori='izin' AND no_bp='$bp' ORDER BY indek DESC");
 			}
 
-			while($data_is = mysql_fetch_array($sql_is)){
+			while($data_is = mysqli_fetch_array($sql_is)){
 				?>
 				<tr>
 					<td><?php echo $data_is['indek']; ?></td>

@@ -2,8 +2,8 @@
 	$indek = $_GET['no_indeks'];
 	$no_bp = $_GET['no_bp'];
 
-	$sql_is = mysql_query("SELECT * FROM tb_izin_sakit WHERE indek = $indek") or die (mysql_error());
-	$data_is = mysql_fetch_array($sql_is);
+	$sql_is = mysqli_query($conn, "SELECT * FROM tb_izin_sakit WHERE indek = $indek");
+	$data_is = mysqli_fetch_array($sql_is);
 
 	$kategori = $data_is['kategori'];
 	//melihat nilai yang terbaca oleh $sql_is
@@ -14,11 +14,11 @@
 	$gambar = $data_is['gambar'];
 
 	//menghapus data
-	mysql_query("DELETE FROM tb_izin_sakit WHERE indek=$indek") or die (mysql_error());
+	mysqli_query($conn, "DELETE FROM tb_izin_sakit WHERE indek=$indek");
 
 	//mengambil nilai-nilai yang diperlukan pada tabel rekap semester
-	$sql_rekap = mysql_query("SELECT * FROM tb_rekap WHERE no_induk=$no_bp") or die (mysql_error());
-	$data_rekap = mysql_fetch_array($sql_rekap);
+	$sql_rekap = mysqli_query($conn, "SELECT * FROM tb_rekap WHERE no_induk=$no_bp");
+	$data_rekap = mysqli_fetch_array($sql_rekap);
 
 	$hadir = $data_rekap["jml_hadir"];
 	$izin = $data_rekap["izin"];
@@ -31,8 +31,8 @@
 	}
 
 	//mengambil data jumlah pertemuan perkuliahan
-	$sql_matkul = mysql_query("SELECT * FROM tb_matkul") or die (mysql_error());
-	$data_matkul = mysql_fetch_array($sql_matkul);
+	$sql_matkul = mysqli_query($conn, "SELECT * FROM tb_matkul");
+	$data_matkul = mysqli_fetch_array($sql_matkul);
 
 	$jml_pertemuan = $data_matkul["jml_pertemuan"];
 
@@ -48,7 +48,7 @@
 	}
 	
 	//update tabel rekap semester dengan data yang baru
-	mysql_query("UPDATE tb_rekap SET jml_hadir='$hadir', izin='$izin', sakit='$sakit', tdk_hadir='$tdk_hadir', persentase='$persentase', keterangan='$ket' WHERE no_induk='$no_bp' ") or die (mysql_error());
+	mysqli_query($conn, "UPDATE tb_rekap SET jml_hadir='$hadir', izin='$izin', sakit='$sakit', tdk_hadir='$tdk_hadir', persentase='$persentase', keterangan='$ket' WHERE no_induk='$no_bp' ");
  ?>
  <script type="text/javascript">
  	alert("Data telah dihapus.");

@@ -54,26 +54,26 @@
 								<?php
 							}else{
 								//kirim data ke tabel tb_identitas
-								$sql_matkul = mysqli_query($conn, "SELECT * FROM tb_matkul") or die (mysql_error());
+								$sql_matkul = mysqli_query($conn, "SELECT * FROM tb_matkul");
 								$data_matkul = mysqli_fetch_array($sql_matkul);
 								$jml_pertemuan = $data_matkul['jml_pertemuan'];
 								
 
-								mysqli_query($conn, "INSERT INTO `tb_identitas` (`no`, `kode`, `nama`, `no_induk`, `gender`, `jabatan`, `password`) VALUES (NULL, '$kode', '$nama', '$no_induk', '$gender', '$jabatan', '$password');") or die (mysql_error());	
+								mysqli_query($conn, "INSERT INTO `tb_identitas` (`no`, `kode`, `nama`, `no_induk`, `gender`, `jabatan`, `password`) VALUES (NULL, '$kode', '$nama', '$no_induk', '$gender', '$jabatan', '$password');");	
 								
 								//---
 								
 								if($jabatan == 'mahasiswa'){
-									/*mengambil nilai nomor indeks dari tabel tb_identitas untuk
-									digunakan sebagai nomor indeks pada tabel tb_rekap*/
+									// mengambil nilai nomor indeks dari tabel tb_identitas untuk
+									// digunakan sebagai nomor indeks pada tabel tb_rekap
 									$sql = mysqli_query($conn, "SELECT * FROM tb_identitas where kode='$kode'");
 									$data = mysqli_fetch_array($sql);
 									$indek = $data['no'];
-									/*---*/
+									// ---
 									
-									/*Kirim data baru ke tabel tb_rekap*/
-									mysqli_query($conn, "INSERT INTO `tb_rekap` (`no`, `kode`, `nama`, `no_induk`, `jml_hadir`, `izin`, `sakit`, `tdk_hadir`,`persentase`, `keterangan`) VALUES('$indek','$kode', '$nama', '$no_induk','0','0','0','$jml_pertemuan','0','Tidak Dapat Mengikuti Ujian');") or die (mysql_error());
-									/*---*/
+									// Kirim data baru ke tabel tb_rekap
+									mysqli_query($conn, "INSERT INTO `tb_rekap` (`no`, `kode`, `nama`, `no_induk`, `jml_hadir`, `izin`, `sakit`, `tdk_hadir`,`persentase`, `keterangan`) VALUES('$indek','$kode', '$nama', '$no_induk','0','0','0','$jml_pertemuan','0','Tidak Dapat Mengikuti Ujian');");
+									// ---
 									}	
 								?>
 								<script type="text/javascript">

@@ -62,8 +62,7 @@
 			<tr>
 				<td>Alasan</td>
 				<td>
-					<textarea name="alasan">
-					</textarea>
+					<textarea name="alasan"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -106,18 +105,18 @@
 		}else{
 			$pindah = move_uploaded_file($sumber, $target.$nama_gambar);
 			if($pindah){
-				$sql_id = mysql_query("select * from tb_identitas where nama='$nama' and no_induk='$no_bp'");
-				$data_id = mysql_fetch_array($sql_id);
+				$sql_id = mysqli_query($conn, "select * from tb_identitas where nama='$nama' and no_induk='$no_bp'");
+				$data_id = mysqli_fetch_array($sql_id);
 				$indek = $data_id["no"];
 				$jabatan = $data_id["jabatan"];
 
 				if($jabatan=='mahasiswa'){
-					mysql_query("insert into tb_izin_sakit(nama,no_bp, kategori, tanggal, alasan, gambar) value('$nama','$no_bp', '$keterangan', '$tanggal_full', '$alasan', '$nama_gambar')");
-					$sql_kul = mysql_query("select * from tb_matkul");
-					$data_kul = mysql_fetch_array($sql_kul);
+					mysqli_query($conn, "insert into tb_izin_sakit(nama,no_bp, kategori, tanggal, alasan, gambar) value('$nama','$no_bp', '$keterangan', '$tanggal_full', '$alasan', '$nama_gambar')");
+					$sql_kul = mysqli_query($conn, "select * from tb_matkul");
+					$data_kul = mysqli_fetch_array($sql_kul);
 					
-					$sql_rkp = mysql_query("select * from tb_rekap where no_induk = '$no_bp'");
-					$data_rkp = mysql_fetch_array($sql_rkp);
+					$sql_rkp = mysqli_query($conn, "select * from tb_rekap where no_induk = '$no_bp'");
+					$data_rkp = mysqli_fetch_array($sql_rkp);
 
 					$hadir = $data_rkp["jml_hadir"];
 					$izin = $data_rkp["izin"];
@@ -142,7 +141,7 @@
 					}
 
 					//update nilai pada tabel tb_rekap
-					$update = mysql_query("update tb_rekap set izin='$izin', sakit='$sakit', tdk_hadir='$ketidakhadiran', persentase='$persentase', keterangan='$status' where no_induk='$no_bp'") or die (mysql_error());
+					$update = mysqli_query($conn, "update tb_rekap set izin='$izin', sakit='$sakit', tdk_hadir='$ketidakhadiran', persentase='$persentase', keterangan='$status' where no_induk='$no_bp'");
 
 					if($update){
 						?>
