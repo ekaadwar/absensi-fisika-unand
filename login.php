@@ -1,7 +1,7 @@
 <?php 
 	@session_start();
 	include "mysql/koneksi.php";
-	if(@$_SESSION['admin']||@$_SESSION['operator']||@$_SESSION['pengajar']||@$_SESSION{'mahasiswa'}){
+	if(@$_SESSION['admin']||@$_SESSION['operator']||@$_SESSION['dosen']||@$_SESSION{'mahasiswa'}){
 		header("location: index.php");
 	}else{
 	?>
@@ -44,7 +44,7 @@
 					if($username=='' || $password==''){
 						?> <script type="text/javascript">alert("Username dan Password tidak boleh kosong");</script> <?php
 					}else{
-						$sql = "select * from tb_identitas where no_induk = '$username' and password = '$password'";
+						$sql = "SELECT * FROM tb_identitas WHERE no_induk = '$username' AND password = '$password'";
 						$result = mysqli_query($conn, $sql);
 						
 
@@ -58,8 +58,8 @@
 							}else if($data['jabatan'] == 'operator'){
 								@$_SESSION['operator'] = $data['no'];
 								header('location: index.php');
-							}else if($data['jabatan'] == 'pengajar'){
-								@$_SESSION['pengajar'] = $data['no'];
+							}else if($data['jabatan'] == 'dosen'){
+								@$_SESSION['dosen'] = $data['no'];
 								header('location: index.php');
 							}else if($data['jabatan'] == 'mahasiswa'){
 								@$_SESSION['mahasiswa'] = $data['no'];

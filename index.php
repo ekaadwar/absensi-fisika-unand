@@ -3,7 +3,7 @@
 	@session_start();
 	include "mysql/koneksi.php";
 
-	if(@$_SESSION['admin'] || @$_SESSION['operator'] || @$SESSION['pengajar'] || @$_SESSION['mahasiswa']){
+	if(@$_SESSION['admin'] || @$_SESSION['operator'] || @$SESSION['dosen'] || @$_SESSION['mahasiswa']){
 		include "section/header.php";
 		include "section/menu.php";
 		include "section/isi.php";

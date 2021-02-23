@@ -93,7 +93,7 @@
 			?>
 			<script type="text/javascript">
 				alert("Data berhasil diganti.");
-				// window.location.href = "?page=profil";
+				window.location.href = "?page=profil";
 			</script>
 			<?php
 		}
